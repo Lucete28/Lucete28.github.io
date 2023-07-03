@@ -581,7 +581,17 @@
 					}
 
 			});
-
+		
+	
 	};
-
+	$(document).ready(function() {
+		$('#stock-analysis-link').click(function(e) {
+		  e.preventDefault();
+		  $('#stock-analysis-options').toggle();
+		});
+	  });
+	  
+	  
+	  
+	  
 })(jQuery);
