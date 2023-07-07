@@ -30,9 +30,9 @@
 
 								<ul class="stats">
 									<li><a href="#" class="icon fa-comment">16</a></li>
-									<li><a href="#" class="icon fa-heart">32</a></li>
+									<li><a href="#" class="icon fa-heart" id="heart">32</a></li>
 									<li><a href="#" class="icon brands fa-twitter">64</a></li>
-								</ul>
+								  </ul>
 							</div>
 							<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a> -->
 							<p>
@@ -42,7 +42,23 @@
                                 <strong>github</strong> : <a href="https://github.com/Lucete28/Lucete28.github.io"> https://github.com/Lucete28/Lucete28.github.io </a> <br>
                             </p>
 							<p>
-								블로그 어쩌고 저쩌고  
+								<ul>
+									<li>활용한 사이트:</li>
+									<ul>
+										<li><a href="https://cocoon1787.tistory.com/689">기술스택 뱃지 만들기</a></li>
+										<li><a href="https://computasha.github.io/etc-utterances/">댓글 기능 추가하기</a></li>
+										<li><a href="https://html-css-js.com/html/character-codes/icons/">이모지 찾기</a></li>	
+									</ul>
+								</ul>
+							</p>
+							<p>
+								<script src="https://utteranc.es/client.js"
+								repo="Lucete28/Utterance"
+								issue-term="pathname"
+								theme="github-light"
+								crossorigin="anonymous"
+								async>
+							</script>
 							</p>
                             <a href="javascript:history.go(-1)" class="go-back-button">Go Back</a>
 						</article>
@@ -63,8 +79,8 @@
 						<ul>
 							<li><a href="../../index.html">Latest Post</a></li>
 							<li class="current"><a href="../project_main.html">Projects</a></li>
-							<li><a href="#">About Me</a></li>
-							<li><a href="#">Library</a></li>
+							<li><a href="../../About_me/about_me.html">About Me</a></li>
+							<li><a href="../../Library/Library.html">Library</a></li>
 						</ul>
 					</nav>
 
@@ -88,6 +104,16 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				$(document).ready(function() {
+				  $('#heart').click(function() {
+					var currentLikes = parseInt($(this).text());
+					var newLikes = currentLikes + 1;
+					$(this).text(newLikes);
+				  });
+				});
+				</script>
+				
 
 	</body>
 </html>

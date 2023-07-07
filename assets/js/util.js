@@ -1,5 +1,10 @@
 (function($) {
-
+	$.fn.heartup = function increaseLikes(element) {
+		var currentLikes = parseInt(element.textContent);
+		var newLikes = currentLikes + 1;
+		element.textContent = newLikes;
+	  };
+	  
 	/**
 	 * Generate an indented list of links from a nav. Meant for use with panel().
 	 * @return {jQuery} jQuery object.
