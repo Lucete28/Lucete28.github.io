@@ -15,8 +15,9 @@
 		<meta property="og:type" content="website"> 
 		<meta property="og:title" content="Lucete28 profile">
 		<meta property="og:description" content="Lucete28의 프로필">
-		<meta property="og:image" content="https://github.com/Lucete28/Lucete28.github.io/blob/main/images/cat%203.jpg">
+		<meta property="og:image" content="https://github.com/Lucete28/Lucete28.github.io/blob/main/images/cat%203.jpg?raw=true">
 		<meta property="og:url" content="https://lucete28.github.io/">
+		
 	</head>
 	<body class="is-preload">
 
@@ -32,8 +33,8 @@
 									if they get too long. You can also remove the <p> entirely if you don't
 									need a subtitle.
 								-->
-								<h2><a href="#">정호연의 사이트</a></h2>
-								<p>삼겹살 먹으러 갈사람</p>
+								<h2><a href="#">안녕하세요 정호연의 블로그입니다.</a></h2>
+								<p>개발기록</p>
 							</header>
 							<div class="info">
 								<!--
@@ -55,12 +56,28 @@
 									<li><a href="#" class="icon brands fa-facebook-f">128</a></li>
 								</ul>
 							</div>
-							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+							<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a> -->
 							<p>
-								<strong>Hello!</strong> You're looking at <strong>Striped</strong>, a fully responsive HTML5 site template designed by <a href="http://twitter.com/ajlkn">AJ</a>
-								for <a href="http://html5up.net">HTML5 UP</a> It features a clean, minimalistic design, styling for all basic page elements (including blockquotes, tables and lists), a
-								repositionable sidebar (left or right), and HTML5/CSS3 code designed for quick and easy customization (see code comments for details).
-							</p>
+								<strong>학력</strong> 배재대학교 드론로봇공학 및 AI SW 융합전공 재학<br>
+								<strong>활동</strong> Encore PlayData 부트캠프(빅데이터 기반 지능형 SW 및 MLOps 개발자 양성과정) 수강중 <br>
+								<strong>GITHUB</strong> <a href="https://github.com/Lucete28">정호연의 깃헙 바로가기</a> <br>
+								<strong>Tech Stack</strong><br> 
+									<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+									<img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&17CEElor=white">
+									<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&17CEElor=white">
+									<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"> 
+									<img src="https://img.shields.io/badge/dbveaver-0F9D58?style=for-the-badge&logo=dbveaver&017CEElor=white">
+									<img src="https://img.shields.io/badge/Groom-004088?style=for-the-badge&logo=Groom&017CEElor=white">
+									<img src="https://img.shields.io/badge/opencv-5C3EE8?style=for-the-badge&logo=opencv&017CEElor=white">
+									<img src="https://img.shields.io/badge/apacheairflow-017CEE?style=for-the-badge&logo=apacheairflow&017CEElor=white">
+									<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> 
+									<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> 
+									<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+									<img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
+									<img src="https://img.shields.io/badge/tensorflow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white">
+									<img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=white">
+							</p> 
+
 							<p>
 								Striped is released for free under the <a href="http://html5up.net/license">Creative Commons Attribution license</a> so feel free to use it for personal projects
 								or even commercial ones &ndash; just be sure to credit <a href="http://html5up.net">HTML5 UP</a> for the design. If you like what you see here, be sure to check out
@@ -94,7 +111,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="./index.html">Latest Post</a></li>
+							<li class="current"><a href="./index.html">Profile</a></li>
 							<li><a href="./projects/project_main.html">Projects</a></li>
 							<li><a href="./About_me/about_me.html">About Me</a></li>
 							<li><a href="./Library/Library.html">Library</a></li>
@@ -159,4 +176,26 @@
 			<script src="assets/js/main.js"></script>
 
 	</body>
+	<script>// Import the functions you need from the SDKs you need
+		import { initializeApp } from "firebase/app";
+		import { getAnalytics } from "firebase/analytics";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+		
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+		  apiKey: "AIzaSyC0nY0HgzAU7FE0IS3TUhnke5MyMj4Jyyo",
+		  authDomain: "lucete28-blog.firebaseapp.com",
+		  projectId: "lucete28-blog",
+		  storageBucket: "lucete28-blog.appspot.com",
+		  messagingSenderId: "452484522596",
+		  appId: "1:452484522596:web:5c23a78155d712fe197571",
+		  measurementId: "G-Q0QQVKSM61"
+		};
+		
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const analytics = getAnalytics(app);
+	</script>
 </html>
