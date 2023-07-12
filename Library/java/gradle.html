@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Striped by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="naver-site-verification" content="fbec5a0aaffec25da049c2cab536fc279fee14c2" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Content -->
+			<div id="content">
+				<div class="inner">
+
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							<header>
+								<h2><a href="#">Gradle</a></h2>
+								<p>Gradle 시작하기</p>
+							</header>
+							<div class="info">
+
+								<span class="date"><span class="month">Jul<span>y</span></span> <span class="day">11</span><span class="year">, 2023</span></span>
+
+								<ul class="stats">
+									<li><a href="#" class="icon fa-comment">16</a></li>
+									<li><a href="#" class="icon fa-heart" id="heart">32</a></li>
+									<li><a href="#" class="icon brands fa-twitter">64</a></li>
+								  </ul>
+							</div>
+							<img src="../../images/gradle_logo.png">
+							<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a> -->
+							<p>
+                                <strong>Tech Stack</strong> : 
+								<img src="https://img.shields.io/badge/java-1E8CBE?style=for-the-badge&logo=java&logoColor=white"> 
+								<img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> 
+								 <br>
+                                <strong>github</strong> : <a href="https://github.com/d-mario24/javarobots"> https://github.com/d-mario24/javarobots </a> <br>
+                            </p>
+							<p>
+								<ul>
+									<li><strong>과정:</strong></li>
+									<ul>
+										<li><a href="https://gradle.org/">Gradle 설치하기</a></li>
+										<ul>
+											<li><a href="https://gradle.org/releases">1. Gradle 설치</a></li>
+											<ul>
+												<div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%">$&nbsp;mkdir&nbsp;<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>opt<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle</div><div style="padding:0 6px; white-space:pre; line-height:130%">$&nbsp;unzip&nbsp;<span style="color:#0086b3"></span><span style="color:#a71d5d">-</span>d&nbsp;<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>opt<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle&nbsp;gradle<span style="color:#0086b3"></span><span style="color:#a71d5d">-</span><span style="color:#0099cc">8.</span><span style="color:#0099cc">2.</span><span style="color:#0099cc">1</span><span style="color:#a71d5d">-</span>bin.zip</div><div style="padding:0 6px; white-space:pre; line-height:130%">$&nbsp;ls&nbsp;<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>opt<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle<span style="color:#0086b3"></span><span style="color:#a71d5d">-</span><span style="color:#0099cc">8.</span><span style="color:#0099cc">2.</span><span style="color:#0099cc">1</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">LICENSE&nbsp;&nbsp;NOTICE&nbsp;&nbsp;bin&nbsp;&nbsp;getting<span style="color:#0086b3"></span><span style="color:#a71d5d">-</span>started.html&nbsp;&nbsp;init.d&nbsp;&nbsp;lib&nbsp;&nbsp;media</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">$&nbsp;<span style="color:#a71d5d">export</span>&nbsp;PATH<span style="color:#0086b3"></span><span style="color:#a71d5d">=</span>$PATH:<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>opt<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle<span style="color:#0086b3"></span><span style="color:#a71d5d">/</span>gradle<span style="color:#0086b3"></span><span style="color:#a71d5d">-</span><span style="color:#0099cc">8.</span><span style="color:#0099cc">2.</span><span style="color:#0099cc">1</span><span style="color:#a71d5d">/</span>bin</div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+											</ul>
+											<li>2. Gradle Test</li>
+											<ul>
+												<div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%">$&nbsp;gradle&nbsp;test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+											</ul>
+										</ul>
+									<li><strong>연습하기:</strong></li>
+									<div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#066de2">#&nbsp;요구사항</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;콘솔프로그램으로&nbsp;만든다</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;수강생&nbsp;목록을&nbsp;입력&nbsp;받는다</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;입력&nbsp;형식은&nbsp;콤파로&nbsp;구문한다&nbsp;(&nbsp;ex&nbsp;김철수,박수만,전두환&nbsp;)</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;또다른&nbsp;입력은&nbsp;숫자이다.&nbsp;즉&nbsp;몇&nbsp;명씩&nbsp;조원을&nbsp;할것인지&nbsp;(&nbsp;ex&nbsp;java&nbsp;Abc&nbsp;김철수,박수만,전두환&nbsp;2&nbsp;)</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;프로그램의&nbsp;목적은&nbsp;랜덤하게&nbsp;조를&nbsp;편성하는&nbsp;것이다.</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;함수&nbsp;…&nbsp;을&nbsp;사용하지&nbsp;않고&nbsp;public&nbsp;static&nbsp;void&nbsp;main&nbsp;안에서&nbsp;모두&nbsp;처리한다.</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#0a9989">-</span>&nbsp;[&nbsp;]&nbsp;지정된&nbsp;repo&nbsp;에&nbsp;branch&nbsp;생성&nbsp;이후&nbsp;pr&nbsp;을&nbsp;생성하고&nbsp;진행한다</div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+									<ul>
+										<li><a href="https://github.com/d-mario24/TeamGen/pull/2">결과</a></li>
+										<img src="../../images/gradle_test.png" width="800">
+									</ul>
+								</ul>
+								
+							</p>
+							<p>
+								<script src="https://utteranc.es/client.js"
+								repo="Lucete28/Utterance"
+								issue-term="pathname"
+								theme="github-light"
+								crossorigin="anonymous"
+								async>
+							</script>
+							</p>
+                            <a href="javascript:history.go(-1)" class="go-back-button">Go Back</a>
+						</article>
+
+
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="../../index.html">STRIPED</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="../../index.html">Latest Post</a></li>
+							<li><a href="../../projects/project_main.html">Projects</a></li>
+							<li><a href="../../About_me/about_me.html">About Me</a></li>
+							<li class="current"><a href="../Library.html">Library</a></li>
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+                    
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				$(document).ready(function() {
+				  $('#heart').click(function() {
+					var currentLikes = parseInt($(this).text());
+					var newLikes = currentLikes + 1;
+					$(this).text(newLikes);
+				  });
+				});
+				</script>
+				
+
+	</body>
+</html>
