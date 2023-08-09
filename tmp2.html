@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+        width: auto;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="file" id="fileInput">
+      <button id="prevPage">이전 페이지</button>
+      <button id="nextPage">다음 페이지</button>
+      <span>현재 페이지: <span id="pageNum">1</span> / <span id="pageCount">1</span></span>
+    </div>
+    <canvas id="pdfCanvas"></canvas>
+    <script>
+      var pdfDoc = null;
+      var pageNum = 1;
+      var pageRendering = false;
+      var pageNumPending = null;
+      var canvas = document.getElementById('pdfCanvas');
+      var ctx = canvas.getContext('2d');
+
+      function renderPage(num) {
+        pageRendering = true;
+        pdfDoc.getPage(num).then(function(page) {
+          var viewport = page.getViewport({ scale: 1 });
+          var scale = Math.min(canvas.clientWidth / viewport.width, canvas.clientHeight / viewport.height);
+          var scaledViewport = page.getViewport({ scale: scale });
+          canvas.height = scaledViewport.height;
+          canvas.width = scaledViewport.width;
+          var renderContext = {
+            canvasContext: ctx,
+            viewport: scaledViewport
+          };
+          var renderTask = page.render(renderContext);
+
+          renderTask.promise.then(function() {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+              renderPage(pageNumPending);
+              pageNumPending = null;
+            }
+          });
+        });
+
+        document.getElementById('pageNum').textContent = num;
+      }
+
+      function queueRenderPage(num) {
+        if (pageRendering) {
+          pageNumPending = num;
+        } else {
+          renderPage(num);
+        }
+      }
+
+      document.getElementById('prevPage').addEventListener('click', function() {
+        if (pageNum <= 1) {
+          return;
+        }
+        pageNum--;
+        queueRenderPage(pageNum);
+      });
+
+      document.getElementById('nextPage').addEventListener('click', function() {
+        if (pageNum >= pdfDoc.numPages) {
+          return;
+        }
+        pageNum++;
+        queueRenderPage(pageNum);
+      });
+
+      document.getElementById('fileInput').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        if (file) {
+          var fileReader = new FileReader();
+          fileReader.onload = function() {
+            var arrayBuffer = fileReader.result;
+            pdfjsLib.getDocument(arrayBuffer).promise.then(function(pdfDoc_) {
+              pdfDoc = pdfDoc_;
+              document.getElementById('pageCount').textContent = pdfDoc.numPages;
+              pageNum = 1;
+              queueRenderPage(pageNum);
+            });
+          };
+          fileReader.readAsArrayBuffer(file);
+        }
+      });
+    </script>
+  </body>
+</html>

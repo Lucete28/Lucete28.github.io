@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <label for="videoId">YouTube 동영상 ID:</label>
+      <input type="text" id="videoId" value="et3VDbL7cIA">
+      <button onclick="loadVideo()">동영상 불러오기</button>
+    </div>
+    <div id="player"></div>
+    <button onclick="restartVideo()">동영상 처음으로</button>
+    <p>현재 재생 시간: <span id="currentTime">0</span>초</p>
+
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+
+      function loadVideo() {
+        var videoId = document.getElementById("videoId").value;
+        
+        if (player) {
+          player.loadVideoById(videoId);
+        } else {
+          player = new YT.Player('player', {
+            height: '360',
+            width: '640',
+            videoId: videoId,
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+      }
+
+      function onYouTubeIframeAPIReady() {
+        // API 초기화
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          done = true;
+        }
+      }
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+      function restartVideo() {
+        player.seekTo(0);
+        player.playVideo();
+      }
+
+      function updateCurrentTime() {
+        var currentTimeElement = document.getElementById("currentTime");
+        var currentTime = player.getCurrentTime().toFixed(2);
+        currentTimeElement.textContent = currentTime;
+      }
+
+      setInterval(updateCurrentTime, 500);
+    </script>
+  </body>
+</html>
