@@ -125,8 +125,64 @@ function restartVideo() {
 
 function updateCurrentTime() {
   var currentTimeElement = document.getElementById("currentTime");
-  var currentTime = player.getCurrentTime().toFixed(2);
+  var currentTime = player.getCurrentTime().toFixed(0);
   currentTimeElement.textContent = currentTime;
 }
 
 setInterval(updateCurrentTime, 500);
+
+
+var targetTimes = [null, null]; // 각 버튼에 설정된 시간을 저장하는 배열
+var timeThreshold = 1.0; // 시간 비교에 사용할 임계값 (1초)
+
+function toggleTargetTime(buttonIndex) {
+  var inputTime = parseFloat(document.getElementById("targetTime" + buttonIndex).value);
+  if (!isNaN(inputTime)) {
+    if (targetTimes[buttonIndex - 1] === inputTime) {
+      targetTimes[buttonIndex - 1] = null;
+    } else {
+      targetTimes[buttonIndex - 1] = inputTime;
+    }
+    updateButtonState(buttonIndex);
+  }
+}
+
+function updateButtonState(buttonIndex) {
+  var button = document.querySelector("#targetTime" + buttonIndex + "+button");
+  if (targetTimes[buttonIndex - 1] !== null) {
+    button.textContent = "취소";
+  } else {
+    button.textContent = "설정";
+  }
+}
+
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING) {
+    var currentTime = player.getCurrentTime();
+    
+    for (var i = 0; i < targetTimes.length; i++) {
+      var targetTime = targetTimes[i];
+      if (targetTime !== null && Math.abs(currentTime - targetTime) <= timeThreshold) {
+        if (pageNum < pdfDoc.numPages) {
+          pageNum++;
+          queueRenderPage(pageNum);
+          targetTimes[i] = null; // 한 번 페이지 변경 후 다시 초기화
+          updateButtonState(i + 1);
+        }
+      }
+    }
+  }
+}
+
+// 매초마다 호출되는 함수
+function checkPlayerState() {
+  var playerState = player.getPlayerState();
+  if (playerState == YT.PlayerState.PLAYING) {
+    var currentTime = player.getCurrentTime();
+    onPlayerStateChange({ data: YT.PlayerState.PLAYING }); // onPlayerStateChange 함수 호출
+  }
+}
+
+// 1초마다 checkPlayerState 함수 호출
+setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
+
