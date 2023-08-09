@@ -44,15 +44,29 @@
     <button onclick="restartVideo()">동영상 처음으로</button>
     <p>현재 재생 시간: <span id="currentTime">0</span>초</p>
     <div>
-        <label for="targetTime1">변경 시간 1:</label>
-        <input type="number" id="targetTime1" step="0.1">
-        <button onclick="toggleTargetTime(1)">설정</button>
-    </div>
-    <div>
-        <label for="targetTime2">변경 시간 2:</label>
-        <input type="number" id="targetTime2" step="0.1">
-        <button onclick="toggleTargetTime(2)">설정</button>
-    </div>
+        <label for="time1">앞으로 넘기기 1:</label>
+        <input type="number" id="time1" step="0.1">
+        <button onclick="toggleTime(1)">설정</button>
+        <label for="time1Back">뒤로 넘기기 1:</label>
+        <input type="number" id="time1Back" step="0.1">
+        <button onclick="toggleTime(1, 'back')">설정</button>
+      </div>
+      <div>
+        <label for="time2">앞으로 넘기기 2:</label>
+        <input type="number" id="time2" step="0.1">
+        <button onclick="toggleTime(2)">설정</button>
+        <label for="time2Back">뒤로 넘기기 2:</label>
+        <input type="number" id="time2Back" step="0.1">
+        <button onclick="toggleTime(2, 'back')">설정</button>
+      </div>
+      <div>
+        <label for="time3">앞으로 넘기기 3:</label>
+        <input type="number" id="time3" step="0.1">
+        <button onclick="toggleTime(3)">설정</button>
+        <label for="time3Back">뒤로 넘기기 3:</label>
+        <input type="number" id="time3Back" step="0.1">
+        <button onclick="toggleTime(3, 'back')">설정</button>
+      </div>
       
   </div>
   <div id="pdfContainer">

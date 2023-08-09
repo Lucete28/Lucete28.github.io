@@ -132,24 +132,29 @@ function updateCurrentTime() {
 setInterval(updateCurrentTime, 500);
 
 
-var targetTimes = [null, null]; // 각 버튼에 설정된 시간을 저장하는 배열
-var timeThreshold = 1.0; // 시간 비교에 사용할 임계값 (1초)
+var times = [null, null, null];
+var backTimes = [null, null, null];
+var timeThreshold = 1.0;
 
-function toggleTargetTime(buttonIndex) {
-  var inputTime = parseFloat(document.getElementById("targetTime" + buttonIndex).value);
+function toggleTime(index, direction) {
+  var inputTime = parseFloat(document.getElementById("time" + index + (direction === 'back' ? 'Back' : '')).value);
+  var timeArray = direction === 'back' ? backTimes : times;
+  
   if (!isNaN(inputTime)) {
-    if (targetTimes[buttonIndex - 1] === inputTime) {
-      targetTimes[buttonIndex - 1] = null;
+    if (timeArray[index - 1] === inputTime) {
+      timeArray[index - 1] = null;
     } else {
-      targetTimes[buttonIndex - 1] = inputTime;
+      timeArray[index - 1] = inputTime;
     }
-    updateButtonState(buttonIndex);
+    updateButtonState(index, direction);
   }
 }
 
-function updateButtonState(buttonIndex) {
-  var button = document.querySelector("#targetTime" + buttonIndex + "+button");
-  if (targetTimes[buttonIndex - 1] !== null) {
+function updateButtonState(index, direction) {
+  var button = document.querySelector("#time" + index + (direction === 'back' ? 'Back' : '') + "+button");
+  var timeArray = direction === 'back' ? backTimes : times;
+  
+  if (timeArray[index - 1] !== null) {
     button.textContent = "취소";
   } else {
     button.textContent = "설정";
@@ -160,14 +165,25 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     var currentTime = player.getCurrentTime();
     
-    for (var i = 0; i < targetTimes.length; i++) {
-      var targetTime = targetTimes[i];
-      if (targetTime !== null && Math.abs(currentTime - targetTime) <= timeThreshold) {
+    for (var i = 0; i < times.length; i++) {
+      var forwardTime = times[i];
+      var backwardTime = backTimes[i];
+      
+      if (forwardTime !== null && Math.abs(currentTime - forwardTime) <= timeThreshold) {
         if (pageNum < pdfDoc.numPages) {
           pageNum++;
           queueRenderPage(pageNum);
-          targetTimes[i] = null; // 한 번 페이지 변경 후 다시 초기화
+          times[i] = null;
           updateButtonState(i + 1);
+        }
+      }
+      
+      if (backwardTime !== null && Math.abs(currentTime - backwardTime) <= timeThreshold) {
+        if (pageNum > 1) {
+          pageNum--;
+          queueRenderPage(pageNum);
+          backTimes[i] = null;
+          updateButtonState(i + 1, 'back');
         }
       }
     }
@@ -185,4 +201,3 @@ function checkPlayerState() {
 
 // 1초마다 checkPlayerState 함수 호출
 setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
-
