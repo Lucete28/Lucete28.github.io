@@ -2,6 +2,7 @@
 <html>
 <head>
   <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <!-- <link rel="stylesheet" href="../../assets/css/main.css" /> -->
   <style>
     body {
       margin: 0;
@@ -9,14 +10,14 @@
       display: flex;
       height: 100vh; /* 화면의 세로 뷰포트 높이에 맞게 설정 */
     }
-    #sidebar {
-      width: 5%;
+    <!-- #sidebar {
+      width: 10%;
       background-color: #f1f1f1;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
-    }
+    } -->
     #videoContainer, #pdfContainer {
       flex: 1;
       display: none;
@@ -29,21 +30,27 @@
       width: auto;
       height: 100vh; /* 화면의 세로 뷰포트 높이에 맞게 설정 */
     }
+    
   </style>
 </head>
 <body>
   <div id="sidebar">
     <a href="http://lucete28.github.io">홈으로</a>
+    <br>
+    <br>
+    <br>
     <button onclick="showPDF()">PDF 뷰어</button>
+    <br>
+    <br>
     <button onclick="showVideo()">유튜브 뷰어</button>
   </div>
   <div id="videoContainer">
-    <label for="videoId">YouTube 동영상 ID:</label>
-    <input type="text" id="videoId" value="et3VDbL7cIA">
+    <label for="videoId">YouTube 동영상 주소:</label>
+    <input type="text" id="videoId" value="https://youtu.be/Xn676-fLq7I">
     <button onclick="loadVideo()">동영상 불러오기</button>
+
     <div id="player"></div>
     <button onclick="restartVideo()">동영상 처음으로</button>
-    <p>현재 재생 시간: <span id="currentTime">0</span>초</p>
     <div>
         <label for="time1">앞으로 넘기기 1:</label>
         <input type="number" id="time1" step="0.1">
@@ -70,12 +77,16 @@
       </div>
       
   </div>
+
+<!-- PDF 컨트롤러러 -->
   <div id="pdfContainer">
     <div>
       <input type="file" id="fileInput">
       <button id="prevPage">이전 페이지</button>
       <button id="nextPage">다음 페이지</button>
       <span>현재 페이지: <span id="pageNum">1</span> / <span id="pageCount">1</span></span>
+      <p>현재 재생 시간: <span id="currentTime">0</span>초</p>
+      <button onclick="restartVideo()">동영상 처음으로</button>
     </div>
     <canvas id="pdfCanvas"></canvas>
   </div>

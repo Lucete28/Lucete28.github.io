@@ -82,8 +82,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
 function loadVideo() {
-  var videoId = document.getElementById("videoId").value;
-  
+  var videoId = extractVideoId(document.getElementById("videoId").value); // 동영상 아이디 추출
+
   if (player) {
     player.loadVideoById(videoId);
   } else {
@@ -98,6 +98,12 @@ function loadVideo() {
     });
   }
 }
+
+function extractVideoId(url) {
+  const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/);
+  return videoIdMatch ? videoIdMatch[1] : null;
+}
+
 
 function onYouTubeIframeAPIReady() {
   // API 초기화
@@ -173,7 +179,7 @@ function onPlayerStateChange(event) {
         if (pageNum < pdfDoc.numPages) {
           pageNum++;
           queueRenderPage(pageNum);
-          times[i] = null;
+          // times[i] = null;
           updateButtonState(i + 1);
         }
       }
@@ -182,7 +188,7 @@ function onPlayerStateChange(event) {
         if (pageNum > 1) {
           pageNum--;
           queueRenderPage(pageNum);
-          backTimes[i] = null;
+          // backTimes[i] = null;
           updateButtonState(i + 1, 'back');
         }
       }
