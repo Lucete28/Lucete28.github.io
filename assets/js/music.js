@@ -140,7 +140,7 @@ setInterval(updateCurrentTime, 500);
 
 var times = [null, null, null];
 var backTimes = [null, null, null];
-var timeThreshold = 1.0;
+var timeThreshold = 0.3;
 
 function toggleTime(index, direction) {
   var inputTime = parseFloat(document.getElementById("time" + index + (direction === 'back' ? 'Back' : '')).value);

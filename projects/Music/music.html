@@ -1,106 +1,135 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Striped by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-  <!-- <link rel="stylesheet" href="../../assets/css/main.css" /> -->
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      height: 100vh; /* 화면의 세로 뷰포트 높이에 맞게 설정 */
-    }
-    <!-- #sidebar {
-      width: 10%;
-      background-color: #f1f1f1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    } -->
-    #videoContainer, #pdfContainer {
-      flex: 1;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
-    canvas {
-      display: block;
-      width: auto;
-      height: 100vh; /* 화면의 세로 뷰포트 높이에 맞게 설정 */
-    }
-    
-  </style>
-</head>
-<body>
-  <div id="sidebar">
-    <a href="http://lucete28.github.io">홈으로</a>
-    <br>
-    <br>
-    <br>
-    <button onclick="showPDF()">PDF 뷰어</button>
-    <br>
-    <br>
-    <button onclick="showVideo()">유튜브 뷰어</button>
-  </div>
-  <div id="videoContainer">
-    <label for="videoId">YouTube 동영상 주소:</label>
-    <input type="text" id="videoId" value="https://youtu.be/Xn676-fLq7I">
-    <button onclick="loadVideo()">동영상 불러오기</button>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="naver-site-verification" content="fbec5a0aaffec25da049c2cab536fc279fee14c2" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
 
-    <div id="player"></div>
-    <button onclick="restartVideo()">동영상 처음으로</button>
-    <div>
-        <label for="time1">앞으로 넘기기 1:</label>
-        <input type="number" id="time1" step="0.1">
-        <button onclick="toggleTime(1)">설정</button>
-        <label for="time1Back">뒤로 넘기기 1:</label>
-        <input type="number" id="time1Back" step="0.1">
-        <button onclick="toggleTime(1, 'back')">설정</button>
-      </div>
-      <div>
-        <label for="time2">앞으로 넘기기 2:</label>
-        <input type="number" id="time2" step="0.1">
-        <button onclick="toggleTime(2)">설정</button>
-        <label for="time2Back">뒤로 넘기기 2:</label>
-        <input type="number" id="time2Back" step="0.1">
-        <button onclick="toggleTime(2, 'back')">설정</button>
-      </div>
-      <div>
-        <label for="time3">앞으로 넘기기 3:</label>
-        <input type="number" id="time3" step="0.1">
-        <button onclick="toggleTime(3)">설정</button>
-        <label for="time3Back">뒤로 넘기기 3:</label>
-        <input type="number" id="time3Back" step="0.1">
-        <button onclick="toggleTime(3, 'back')">설정</button>
-      </div>
-      
-  </div>
+	</head>
+	<body class="is-preload">
 
-<!-- PDF 컨트롤러러 -->
-  <div id="pdfContainer">
-    <div>
-      <input type="file" id="fileInput">
-      <button id="prevPage">이전 페이지</button>
-      <button id="nextPage">다음 페이지</button>
-      <span>현재 페이지: <span id="pageNum">1</span> / <span id="pageCount">1</span></span>
-      <p>현재 재생 시간: <span id="currentTime">0</span>초</p>
-      <button onclick="restartVideo()">동영상 처음으로</button>
-    </div>
-    <canvas id="pdfCanvas"></canvas>
-  </div>
-  <script src="../../assets/js/music.js"></script>
-  <script>
-    function showVideo() {
-      document.getElementById("videoContainer").style.display = "block";
-      document.getElementById("pdfContainer").style.display = "none";
-    }
+		<!-- Content -->
+			<div id="content">
+				<div class="inner">
 
-    function showPDF() {
-      document.getElementById("videoContainer").style.display = "none";
-      document.getElementById("pdfContainer").style.display = "block";
-    }
-  </script>
-</body>
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							<header>
+								<h2><a href="#">악보 넘겨주기</a></h2>
+								<p>연주중에 악보 넘기기 귀찮은 사람들을 위하여</p>
+							</header>
+							<div class="info">
+
+								<span class="date"><span class="month">AUG<span></span></span> <span class="day">11</span><span class="year">, 2023</span></span>
+
+								<ul class="stats">
+									<li><a href="#" class="icon fa-comment">16</a></li>
+									<li><a href="#" class="icon fa-heart" id="heart">32</a></li>
+									<li><a href="#" class="icon brands fa-twitter">64</a></li>
+								  </ul>
+							</div>
+							<img src="../../images/project/piano.jpeg", width="100%">
+							<!-- <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a> -->
+							<p>
+                                <strong>Tech Stack</strong> : 
+								<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> 
+								<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> 
+								 <br>
+                                <strong>github</strong> : <a href="https://github.com/Lucete28/Lucete28.github.io/tree/main/projects/Music"> https://github.com/Lucete28/Lucete28.github.io/tree/main/projects/Music </a> <br>
+                            </p>
+							<p>
+								<strong><a href="./music_service.html">서비스 바로가기</a></strong><br>
+								<strong><a href="./music_service.html">서비스 바로가기</a></strong><br>
+								<strong><a href="./music_service.html">서비스 바로가기</a></strong>
+								<ul>
+									<li><strong>기타 요청사항은 댓글로 남겨주세요</strong></li>
+									<li><strong>광고 문의는 메일로 남겨주세요</strong></li>
+									<li><strong>사용법:</strong></li>
+									<ul>
+										<li>원하는 유튜브 영상주소를 유튜브 뷰어에 입력</li>
+										<li>악보가 넘가길 원하는 타임을 설정</li>
+										<li>PDF 뷰어에서 원하는 악보 파일(PDF)를 선택</li>
+										<li>동영상 처음으로 버튼으로 영상 시작</li>
+									</ul>
+									<li><strong>패치 예정: </strong></li>
+									<ul>
+										<li>악보 정보, 음악 정보 및 설정시간 저장기능</li>
+										<li>ui 개선</li>
+										<li>매트로늄</li>
+										<li>영상없이 시간만 설정</li>
+									</ul>
+								</ul>
+								
+							</p>
+							<p>
+								<script src="https://utteranc.es/client.js"
+								repo="Lucete28/Utterance"
+								issue-term="pathname"
+								theme="github-light"
+								crossorigin="anonymous"
+								async>
+							</script>
+							</p>
+                            <a href="javascript:history.go(-1)" class="go-back-button">Go Back</a>
+						</article>
+
+
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="../../index.html">STRIPED</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="../../index.html">Profile</a></li>
+							<li class="current"><a href="../project_main.html">Projects</a></li>
+							<li><a href="../../About_me/about_me.html">About Me</a></li>
+							<li><a href="../../Library/Library.html">Library</a></li>
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+                    
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script>
+				$(document).ready(function() {
+				  $('#heart').click(function() {
+					var currentLikes = parseInt($(this).text());
+					var newLikes = currentLikes + 1;
+					$(this).text(newLikes);
+				  });
+				});
+				</script>
+				
+
+	</body>
 </html>
