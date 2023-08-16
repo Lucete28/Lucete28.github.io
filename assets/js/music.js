@@ -1,3 +1,11 @@
+//setting var
+  let music_setting = {
+    setting_CUS_NO : null,
+    setting_NAME : null,
+    setting_URL : null,
+    setting_FILE : null, //이거 해야해
+    setting_TIME : null,
+  }
 // pdf 띄우기
 var pdfDoc = null;
 var pageNum = 1;
@@ -59,6 +67,9 @@ document.getElementById('nextPage').addEventListener('click', function() {
 document.getElementById('fileInput').addEventListener('change', function(event) {
   var file = event.target.files[0];
   if (file) {
+    selectedFileName = file.name; // 파일 이름 업데이트
+    music_setting.setting_NAME = selectedFileName
+    
     var fileReader = new FileReader();
     fileReader.onload = function() {
       var arrayBuffer = fileReader.result;
@@ -73,6 +84,9 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
   }
 });
 
+
+
+
 // 유튜브 재생
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -83,7 +97,7 @@ var player;
 
 function loadVideo() {
   var videoId = extractVideoId(document.getElementById("videoId").value); // 동영상 아이디 추출
-
+  music_setting.setting_URL = videoId
   if (player) {
     player.loadVideoById(videoId);
   } else {
@@ -135,7 +149,7 @@ function updateCurrentTime() {
   currentTimeElement.textContent = currentTime;
 }
 
-setInterval(updateCurrentTime, 500);
+// setInterval(updateCurrentTime, 500);
 
 
 var times = [null, null, null];
@@ -154,6 +168,8 @@ function toggleTime(index, direction) {
     }
     updateButtonState(index, direction);
   }
+  music_setting.setting_TIME = times + backTimes
+  console.log(music_setting.setting_TIME)
 }
 
 function updateButtonState(index, direction) {
@@ -206,4 +222,42 @@ function checkPlayerState() {
 }
 
 // 1초마다 checkPlayerState 함수 호출
-setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
+// setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
+
+
+// dataload
+const queryParams = new URLSearchParams(window.location.search);
+const CUS_NO = queryParams.get("CUS_NO");
+const userID = queryParams.get("userID");
+const welcomeMessageSpan = document.getElementById("welcomeMessage");
+const musicList = document.getElementById("musicList");
+
+async function fetchData() {
+  try {
+    const response = await fetch(`http://localhost:8000/music/${CUS_NO}`);
+    music_setting.setting_CUS_NO = CUS_NO
+    const musicData = await response.json();
+    displayMusicData(musicData);
+  } catch (error) {
+    console.error("데이터를 가져오는 중 오류 발생:", error);
+  }
+}
+
+function displayMusicData(musicData) {
+  welcomeMessageSpan.textContent = `${userID}님`;
+  musicList.innerHTML = "";
+  if (musicData.length === 0) {
+    const noDataItem = document.createElement("li");
+    noDataItem.textContent = "데이터가 없습니다.";
+    musicList.appendChild(noDataItem);
+  } else {
+    musicList.innerHTML = ""; // 기존 목록 비우기
+    musicData.forEach(music => {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${music.title} - ${music.artist}`;
+      musicList.appendChild(listItem);
+    });
+  }
+}
+
+fetchData();

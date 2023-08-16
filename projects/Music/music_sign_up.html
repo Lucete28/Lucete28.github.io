@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Example</title>
+</head>
+<body>
+  <h1>Sign Up Form</h1>
+  <form id="signupForm">
+    <label for="ID">ID:</label>
+    <input type="text" id="ID" name="ID"><br><br>
+    <label for="PWD">Password:</label>
+    <input type="password" id="PWD" name="PWD"><br><br>
+    <label for="PHONE_NUM">Phone Number:</label>
+    <input type="text" id="PHONE_NUM" name="PHONE_NUM"><br><br>
+    <label for="E_MAIL">Email:</label>
+    <input type="email" id="E_MAIL" name="E_MAIL"><br><br>
+    <button type="submit">Sign Up</button>
+    <button id="mainButton">로그인 페이지로</button>
+  </form>
+  <div id="message"></div>
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    const messageDiv = document.getElementById('message');
+    const mainButton = document.getElementById('mainButton');  // "로그인 페이지로" 버튼을 가져옴
+
+    signupForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(signupForm);
+      const data = {
+        ID: formData.get('ID'),
+        PWD: formData.get('PWD'),
+        PHONE_NUM: formData.get('PHONE_NUM'),
+        E_MAIL: formData.get('E_MAIL')
+      };
+
+      try {
+        const response = await fetch('http://localhost:8000/insert', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const responseData = await response.json();
+        messageDiv.textContent = responseData.message;
+
+        if (response.ok) {
+          // 회원 가입이 성공하면 music_login.html 페이지로 이동
+          setTimeout(() => {
+            window.location.href = 'music_login.html';
+          });  // 2초 후에 이동
+        }
+      } catch (error) {
+        console.error('API 호출 에러:', error);
+      }
+    });
+
+    mainButton.addEventListener('click', () => {
+      window.location.href = 'music_login.html'; // 메인으로 이동
+    });
+</script>
+
+</body>
+</html>

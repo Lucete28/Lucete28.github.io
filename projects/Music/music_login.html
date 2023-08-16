@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Example</title>
+</head>
+<body>
+  <h1>Login Form</h1>
+  <form id="loginForm">
+    <label for="ID">ID:</label>
+    <input type="text" id="ID" name="ID"><br><br>
+    <label for="PWD">Password:</label>
+    <input type="password" id="PWD" name="PWD"><br><br>
+    <button type="submit">sign in</button>
+    <button id ="signupButton">sing up</button>
+  </form>
+  <div id="message"></div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const messageDiv = document.getElementById('message');
+    const signupButton = document.getElementById('signupButton');
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(loginForm);
+      const data = {
+        ID: formData.get('ID'),
+        PWD: formData.get('PWD')
+      };
+
+      try {
+        const response = await fetch('http://localhost:8000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+          // 로그인이 성공했을 때
+          const userID = responseData.ID;  // 응답 데이터에서 ID 정보 추출
+          const CUS_NO = responseData.CUS_NO;  // 응답 데이터에서 NO 정보 추출
+
+          // music_service 페이지로 이동하면서 로그인한 사용자의 ID 정보 전달
+          window.location.href = `music_service.html?userID=${userID}&CUS_NO=${CUS_NO}`;
+        
+        } else {
+          messageDiv.textContent = responseData.message;
+        }
+      } catch (error) {
+        console.error('API 호출 에러:', error);
+      }
+    });
+
+    signupButton.addEventListener('click', () => {
+      window.location.href = 'music_sign_up.html'; // 페이지 리디렉션
+    });
+  </script>
+</body>
+</html>
