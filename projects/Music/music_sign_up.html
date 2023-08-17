@@ -33,9 +33,9 @@
         PHONE_NUM: formData.get('PHONE_NUM'),
         E_MAIL: formData.get('E_MAIL')
       };
-
+      console.log(data)
       try {
-        const response = await fetch('http://localhost:8000/insert', {
+        const response = await fetch('http://127.0.0.1:8000/insert', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -50,7 +50,7 @@
           // 회원 가입이 성공하면 music_login.html 페이지로 이동
           setTimeout(() => {
             window.location.href = 'music_login.html';
-          });  // 2초 후에 이동
+          });  
         }
       } catch (error) {
         console.error('API 호출 에러:', error);

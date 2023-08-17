@@ -1,4 +1,6 @@
-//setting var
+let selectedFile = null;
+
+fileInput//setting var
   let music_setting = {
     setting_CUS_NO : null,
     setting_NAME : null,
@@ -67,6 +69,7 @@ document.getElementById('nextPage').addEventListener('click', function() {
 document.getElementById('fileInput').addEventListener('change', function(event) {
   var file = event.target.files[0];
   if (file) {
+    selectedFile = file
     selectedFileName = file.name; // 파일 이름 업데이트
     music_setting.setting_NAME = selectedFileName
     
@@ -78,11 +81,13 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         document.getElementById('pageCount').textContent = pdfDoc.numPages;
         pageNum = 1;
         queueRenderPage(pageNum);
+
       });
     };
-    fileReader.readAsArrayBuffer(file);
+    fileReader.readAsArrayBuffer(selectedFile);
   }
 });
+
 
 
 
@@ -234,7 +239,11 @@ const musicList = document.getElementById("musicList");
 
 async function fetchData() {
   try {
-    const response = await fetch(`http://localhost:8000/music/${CUS_NO}`);
+    const response = await fetch(`http://localhost:8000/music/${CUS_NO}`, {
+  headers: {
+    'accept': 'application/json'
+  }
+});
     music_setting.setting_CUS_NO = CUS_NO
     const musicData = await response.json();
     displayMusicData(musicData);
@@ -261,3 +270,74 @@ function displayMusicData(musicData) {
 }
 
 fetchData();
+
+
+function save_setting() {
+  const cusNo = parseInt(music_setting.setting_CUS_NO);
+  const settings = {
+    CUS_NO: cusNo,
+    FILE_NAME: music_setting.setting_NAME,// 파일 이름 설정
+    URL: music_setting.setting_URL, 
+    TIME: music_setting.setting_TIME
+  };
+  console.log("Settings:", settings)
+  fetch(`http://localhost:8000/set_music`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(settings)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.message); // 서버에서 보내준 응답 메시지 처리
+  })
+  .catch(error => {
+    console.error('설정 저장 중 에러:', error);
+  });
+// -----------------------------------------------------------------------------------------------
+  // 파일 업로드
+  if (selectedFile) {
+    var formData = new FormData();
+    formData.append('pdfFile', selectedFile);
+  
+    fetch('http://localhost:8000/upload', {  // 서버 URL로 수정
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`파일 업로드 실패: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('파일 업로드 완료:', data);
+    })
+    .catch(error => {
+      console.error('파일 업로드 에러:', error);
+    });
+  }
+  
+}
+// ArrayBuffer를 Blob으로 변환하는 함수
+// function save_setting() {
+//   let formData = new FormData();
+//   formData.append('CUS_NO', music_setting.setting_CUS_NO);
+//   formData.append('NAME', music_setting.setting_NAME);
+//   formData.append('URL', music_setting.setting_URL);
+//   formData.append('TIME', JSON.stringify([...times, ...backTimes])); // Assuming times and backTimes are arrays
+//   formData.append('FILE', new Blob([music_setting.setting_FILE], { type: 'application/pdf' })); // Append Blob directly
+
+//   fetch(`http://localhost:8000/set_music`, {
+//     method: 'POST',
+//     body: formData
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data.message); // 서버에서 보내준 응답 메시지 처리
+//   })
+//   .catch(error => {
+//     console.error('설정 저장 중 에러:', error);
+//   });
+// }
