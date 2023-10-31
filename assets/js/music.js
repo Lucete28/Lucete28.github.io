@@ -154,7 +154,7 @@ function updateCurrentTime() {
   currentTimeElement.textContent = currentTime;
 }
 
-// setInterval(updateCurrentTime, 500);
+setInterval(updateCurrentTime, 500);
 
 
 var times = [null, null, null];
@@ -227,7 +227,7 @@ function checkPlayerState() {
 }
 
 // 1초마다 checkPlayerState 함수 호출
-// setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
+setInterval(checkPlayerState, 1000); // 1000 밀리초(1초) 간격으로 호출
 
 
 // dataload
@@ -253,21 +253,46 @@ async function fetchData() {
 }
 
 function displayMusicData(musicData) {
+  console.log(musicData)
   welcomeMessageSpan.textContent = `${userID}님`;
   musicList.innerHTML = "";
+
   if (musicData.length === 0) {
     const noDataItem = document.createElement("li");
     noDataItem.textContent = "데이터가 없습니다.";
     musicList.appendChild(noDataItem);
   } else {
-    musicList.innerHTML = ""; // 기존 목록 비우기
+    const table = document.createElement("table");
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>File Name</th>
+          <th>Time</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+
+    const tbody = table.querySelector("tbody");
     musicData.forEach(music => {
-      const listItem = document.createElement("li");
-      listItem.textContent = `${music.title} - ${music.artist}`;
-      musicList.appendChild(listItem);
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${music.NO}</td>
+        <td><a href="music_play.html?NO=${music.NO}&FILE_NAME=${encodeURIComponent(music.FILE_NAME)}&TIME=${music.TIME}&URL=${music.URL}" target="_blank">${music.FILE_NAME}</a></td>
+        <td>${music.TIME}</td>
+        <td>${music.URL}</td>
+      `;
+      tbody.appendChild(row);
+      
     });
+
+    musicList.appendChild(table);
   }
 }
+
+
 
 fetchData();
 
